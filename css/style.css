@@ -17,7 +17,7 @@ a{
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
     display: block;
     border-radius: 5px;
 }
@@ -231,7 +231,8 @@ p {
     align-content: flex-start;
     padding: 30px;
     gap: 30px; /*NÃO ADICIONA ESPAÇO NAS LATERAIS DOS ELEMENTOS SOMENTE ENTRE ELES*/
-    
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));/*RESOLVE A PARTE DE RESPONSIVIDADE*/ 
+    /*TENTA ENCAIXAR EM UMA COLUNA OS ELEMENTEO DE ATÉ 150PX, OS ELEMENTOS QUE NÃO COUBER ELE QUEBRA E VIRA DUAS LINHAS */
 }
 
 /* FOOTER */
@@ -244,4 +245,101 @@ p {
     color: white;
     text-align: center;
     padding: 30px;
+}
+
+/* FAZ A ANIMAÇÃO DA SETA  */
+@keyframes seta {
+    from {
+        right: 30px;
+    }
+    to {
+        right: 15px;
+    }
+}
+
+/* PARTE DA ESTRUTUDA DO SITE  */
+@media (max-width: 1200px) {
+    .estrutura {
+        grid-template-areas: 
+        "header header header"
+        "sidenav content content"
+        "sidenav anuncios anuncios"
+        "footer footer footer"
+        ;
+    }
+}
+
+@media (max-width: 760px) {
+    .estrutura {
+        grid-template-columns: 100%;
+        grid-template-areas: 
+        "header"
+        "sidenav"
+        "content"
+        "anuncios"
+        "footer"
+        ;
+    }
+
+    .header {
+        grid-template-columns: auto;
+    }
+
+    .header nav a {
+        font-size: 1em;
+    }
+
+    .header li + li {
+        margin-left: 10px;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    /* PARTE DO SIDENAVE */
+
+    .sidenav {
+        overflow-x: auto ; /*CRIA A BARRA DE SCROOL LATERAL*/
+        -webkit-overflow-scrolling: touch; /*MUDA A BARRA DE ROLAGEM NOS DISPOSITIVOS*/
+        -ms-overflow-style: -ms-autohiding-scrollbar; /*ESCONDE A BARRA EM DISPOSITIVOS MICROSOFT*/
+        position: relative;
+    }
+
+    .sidenav::after {
+        content: "⭢";
+        position: absolute;
+        top: 5px;
+        right: 30px;
+        color: rgba(0,0,0,.6);
+        animation: seta .5s ease-in 0s infinite alternate; /*ATIVA A ANIMAÇÃO CRIADO ACIMA*/
+    }
+
+    .sidenav ul{
+        display: flex;
+    }
+    
+    .sidenav li {
+        flex: 1 0 60px;
+    }
+
+    .sidenav {
+        padding: 0 30px;
+    }
+
+    .sidenav li a {
+        margin: 30px 30px 30px 0;
+    }
+
+    .sidenav {
+        overflow-x: auto ;
+    }    
+}
+
+/* PARTE DO CONTENT */
+@media (max-width: 600px) {
+    .content {
+        grid-template-columns: auto;
+        margin: 0 auto;
+    }
 }
