@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+ul, li, a {
+    list-style: none;
+    text-decoration: none;
+}
+
+.estrutura {
+    display: grid;
+
+}
+
+.header {
+    background-color: blueviolet;   
+    display: grid;
+}
+
+.header ul {
+    margin: 10px;
+}
+
+.header img {
+    margin: 10px;
+}
+
+
+
+img {
+    max-width: 100px;
+}
